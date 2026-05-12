@@ -4,9 +4,24 @@
 [![Buy on Gumroad](https://img.shields.io/badge/Buy-%2449-brightgreen.svg)](https://csswitch.gumroad.com/l/csswitch-dashboard)
 [![Live Demo](https://img.shields.io/badge/demo-live-orange.svg)](https://csswitch.github.io/jekyll-dashboard-theme/)
 
-> **⚠️ License notice:** This theme is source-available but **not free to use**.  
-> Viewing and learning from the code is welcome. Deploying it on any live site requires a [paid license](https://csswitch.gumroad.com/l/csswitch-dashboard).  
-> See [LICENSE](./LICENSE) for full terms.
+## 📄 License & Pricing
+
+|  | Free | Paid — $49 |
+|--|------|------------|
+| Personal / non-commercial site | ✅ | ✅ |
+| **Footer attribution required** | ✅ must keep | ❌ removed |
+| Commercial / client projects | ❌ | ✅ |
+| Future theme updates | ❌ | ✅ |
+| Private source repo access | ❌ | ✅ |
+
+**Free to use** on personal projects — just keep the small *"Theme by csswitch"* footer link intact.  
+**Buy the $49 license** to remove the attribution, use commercially, and receive future updates.
+
+**[Buy on Gumroad — $49 →](https://csswitch.gumroad.com/l/csswitch-dashboard)**
+
+See [LICENSE](./LICENSE) for full terms.
+
+---
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-ready-brightgreen?logo=github)](https://csswitch.github.io/jekyll-dashboard-theme/)
 [![Jekyll](https://img.shields.io/badge/Jekyll-4.x-red?logo=jekyll)](https://jekyllrb.com/)
