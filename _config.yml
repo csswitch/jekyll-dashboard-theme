@@ -1,7 +1,7 @@
 title: "Dev Dashboard"
 description: "Your developer portfolio and blog — OS desktop UI aesthetic"
-url: ""
-baseurl: ""
+url: "https://csswitch.github.io"
+baseurl: "/jekyll-dashboard-theme"
 author:
   name: "Your Name"
   email: "you@example.com"
@@ -21,7 +21,6 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-feed
-
 paginate: 8
 paginate_path: "/page:num/"
 
