@@ -1,0 +1,81 @@
+// Dashboard — Design Tokens
+// OS desktop UI aesthetic: dark panels, window chrome, sidebar, stat widgets
+
+// ── Palette (VS Code / macOS dark inspired) ───────────────────────────────────
+$bg-desktop:   #0d1117;   // desktop background (GitHub dark)
+$bg-sidebar:   #161b22;   // sidebar panel
+$bg-panel:     #1c2128;   // main panel / card background
+$bg-titlebar:  #21262d;   // window title bar
+$bg-input:     #161b22;   // input fields
+$border:       #30363d;   // subtle panel border
+$border-focus: #388bfd;   // blue focus ring
+
+$blue:         #388bfd;   // primary action / link
+$green:        #3fb950;   // success / online indicator
+$yellow:       #d29922;   // warning / pending
+$red:          #f85149;   // error / danger
+$purple:       #bc8cff;   // tag / label accent
+$orange:       #db6d28;   // secondary accent
+
+$text:         #e6edf3;   // primary text
+$text-secondary: #8b949e; // muted labels
+$text-dim:     #484f58;   // disabled / placeholder
+
+// ── Typography ────────────────────────────────────────────────────────────────
+$font-ui:    'Inter', sans-serif;       // system UI feel
+$font-mono:  'JetBrains Mono', monospace; // developer mono
+
+// ── Sizing ────────────────────────────────────────────────────────────────────
+$sidebar-width: 240px;
+$titlebar-h:    36px;
+$max-width:     1200px;
+$radius:        6px;
+$radius-sm:     4px;
+
+// ── Mixins ────────────────────────────────────────────────────────────────────
+
+// Window chrome — macOS-style title bar with traffic lights
+@mixin window-chrome($title: '') {
+  &::before {
+    content: '';
+    display: block;
+    height: $titlebar-h;
+    background: $bg-titlebar;
+    border-bottom: 1px solid $border;
+    border-radius: $radius $radius 0 0;
+    position: relative;
+  }
+
+  // Traffic light dots via box-shadow on ::after
+  &::after {
+    content: '● ● ●';
+    position: absolute;
+    top: 0; left: 0;
+    height: $titlebar-h;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    font-size: 0.5rem;
+    letter-spacing: 0.35em;
+    color: $text-dim;
+    pointer-events: none;
+  }
+}
+
+// Panel card
+@mixin panel($bg: $bg-panel) {
+  background: $bg;
+  border: 1px solid $border;
+  border-radius: $radius;
+}
+
+// Status dot
+@mixin status-dot($color: $green) {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: $color;
+  box-shadow: 0 0 4px rgba($color, 0.6);
+  display: inline-block;
+  flex-shrink: 0;
+}

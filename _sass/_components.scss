@@ -1,0 +1,324 @@
+@import 'variables';
+
+// ── Stat Widgets ──────────────────────────────────────────────────────────────
+.widget-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-widget {
+  @include panel;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  &__label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $text-secondary;
+  }
+
+  &__value {
+    font-family: $font-mono;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $text;
+    line-height: 1;
+  }
+
+  &__sub {
+    font-size: 0.7rem;
+    color: $text-dim;
+    font-family: $font-mono;
+  }
+
+  &--blue  .stat-widget__value { color: $blue; }
+  &--green .stat-widget__value { color: $green; }
+  &--yellow .stat-widget__value { color: $yellow; }
+  &--purple .stat-widget__value { color: $purple; }
+}
+
+// ── Window panel ─────────────────────────────────────────────────────────────
+.window-panel {
+  @include panel;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  position: relative;
+
+  &__titlebar {
+    height: $titlebar-h;
+    background: $bg-titlebar;
+    border-bottom: 1px solid $border;
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem;
+    gap: 0.4rem;
+  }
+
+  &__dots {
+    display: flex;
+    gap: 0.35rem;
+
+    span {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      display: block;
+
+      &.dot-red    { background: #ff5f57; }
+      &.dot-yellow { background: #ffbd2e; }
+      &.dot-green  { background: #28c840; }
+    }
+  }
+
+  &__title {
+    font-size: 0.72rem;
+    color: $text-secondary;
+    font-family: $font-mono;
+    flex: 1;
+    text-align: center;
+  }
+
+  &__body { padding: 1.25rem; }
+}
+
+// ── Post card ─────────────────────────────────────────────────────────────────
+.post-card {
+  @include panel;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  overflow: hidden;
+
+  &:hover {
+    border-color: $blue;
+    box-shadow: 0 0 0 1px rgba($blue, 0.3);
+    text-decoration: none;
+  }
+
+  &__titlebar {
+    height: $titlebar-h;
+    background: $bg-titlebar;
+    border-bottom: 1px solid $border;
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem;
+    gap: 0.35rem;
+    flex-shrink: 0;
+
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: $border; }
+    .dot-r { background: rgba(#ff5f57, 0.4); }
+    .dot-y { background: rgba(#ffbd2e, 0.4); }
+    .dot-g { background: rgba(#28c840, 0.4); }
+
+    .post-card__ext {
+      margin-left: auto;
+      font-family: $font-mono;
+      font-size: 0.6rem;
+      color: $text-dim;
+    }
+  }
+
+  &__body { padding: 1rem; flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
+
+  &__date {
+    font-family: $font-mono;
+    font-size: 0.65rem;
+    color: $text-dim;
+  }
+
+  &__title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $text;
+    line-height: 1.3;
+
+    .post-card:hover & { color: $blue; }
+  }
+
+  &__excerpt {
+    font-size: 0.8rem;
+    color: $text-secondary;
+    flex: 1;
+    line-height: 1.5;
+  }
+
+  &__tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: auto; padding-top: 0.5rem; }
+}
+
+// ── Post grid ─────────────────────────────────────────────────────────────────
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+// ── Tag pill ─────────────────────────────────────────────────────────────────
+.tag-pill {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-family: $font-mono;
+  padding: 0.15rem 0.5rem;
+  border-radius: 100px;
+  background: rgba($purple, 0.15);
+  color: $purple;
+  border: 1px solid rgba($purple, 0.3);
+  text-decoration: none;
+  transition: background 0.15s;
+
+  &:hover { background: rgba($purple, 0.3); text-decoration: none; }
+}
+
+// ── Section header ────────────────────────────────────────────────────────────
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid $border;
+
+  &__title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $text-secondary;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  &__count {
+    font-family: $font-mono;
+    font-size: 0.7rem;
+    background: rgba($blue, 0.15);
+    color: $blue;
+    padding: 0.1rem 0.5rem;
+    border-radius: 100px;
+  }
+}
+
+// ── Post header ───────────────────────────────────────────────────────────────
+.post-header {
+  margin-bottom: 1.5rem;
+
+  &__breadcrumb {
+    font-size: 0.72rem;
+    color: $text-secondary;
+    margin-bottom: 0.5rem;
+    font-family: $font-mono;
+
+    a { color: $blue; text-decoration: none; }
+    span { color: $text-dim; margin: 0 0.25rem; }
+  }
+
+  &__title {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    color: $text;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+    color: $text-secondary;
+    font-family: $font-mono;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $border;
+
+    .dot { @include status-dot($green); }
+  }
+}
+
+// ── Post body ─────────────────────────────────────────────────────────────────
+.post-body {
+  max-width: 72ch;
+
+  h2 a.anchor, h3 a.anchor {
+    color: $text-dim;
+    margin-left: 0.4rem;
+    font-size: 0.75em;
+    text-decoration: none;
+    &:hover { color: $blue; }
+  }
+}
+
+// ── Pagination ────────────────────────────────────────────────────────────────
+.dash-pagination {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+
+  a, span {
+    font-family: $font-mono;
+    font-size: 0.72rem;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid $border;
+    border-radius: $radius-sm;
+    color: $text-secondary;
+    text-decoration: none;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  a:hover { border-color: $blue; color: $blue; text-decoration: none; }
+  .current { background: $blue; border-color: $blue; color: $bg-desktop; }
+}
+
+// ── Tags page ─────────────────────────────────────────────────────────────────
+.tags-cloud { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+
+.tag-section {
+  margin-bottom: 2rem;
+
+  &__heading {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $blue;
+    margin-bottom: 0.5rem;
+    font-family: $font-mono;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    &::before { content: '#'; color: $text-dim; }
+  }
+
+  &__list { list-style: none; padding: 0; }
+
+  &__item {
+    border-bottom: 1px solid $border;
+    padding: 0.4rem 0;
+    display: flex;
+    justify-content: space-between;
+
+    a { color: $text; font-size: 0.85rem; text-decoration: none; &:hover { color: $blue; } }
+    .tag-date { font-family: $font-mono; font-size: 0.65rem; color: $text-dim; }
+  }
+}
+
+// ── Archive ───────────────────────────────────────────────────────────────────
+.archive-list {
+  list-style: none;
+  padding: 0;
+
+  &__item {
+    border-bottom: 1px solid $border;
+    padding: 0.4rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+    a { color: $text; font-size: 0.85rem; text-decoration: none; &:hover { color: $blue; } }
+    &__date { font-family: $font-mono; font-size: 0.65rem; color: $text-dim; }
+  }
+}

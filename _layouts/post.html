@@ -1,0 +1,45 @@
+---
+layout: default
+---
+
+<article>
+  <div class="window-panel">
+    <div class="window-panel__titlebar">
+      <div class="window-panel__dots">
+        <span class="dot-red"></span>
+        <span class="dot-yellow"></span>
+        <span class="dot-green"></span>
+      </div>
+      <span class="window-panel__title">{{ page.title | truncate: 50 }}</span>
+    </div>
+    <div class="window-panel__body">
+
+      <div class="post-header">
+        <div class="post-header__breadcrumb">
+          <a href="{{ '/' | relative_url }}">~/home</a>
+          <span>/</span>
+          <a href="{{ '/archive' | relative_url }}">posts</a>
+          <span>/</span>
+          <span>{{ page.title | truncate: 40 }}</span>
+        </div>
+        <h1 class="post-header__title">{{ page.title }}</h1>
+        <div class="post-header__meta">
+          <span class="dot"></span>
+          <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>
+          {% if page.author %}<span>·</span><span>{{ page.author }}</span>{% endif %}
+          {% if page.tags.size > 0 %}
+          <span>·</span>
+          {% for tag in page.tags %}
+          <a href="{{ '/tags' | relative_url }}#{{ tag | slugify }}" class="tag-pill">{{ tag }}</a>
+          {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="post-body">
+        {{ content }}
+      </div>
+
+    </div>
+  </div>
+</article>

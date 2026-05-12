@@ -1,0 +1,219 @@
+@import 'variables';
+
+// ── App shell ─────────────────────────────────────────────────────────────────
+.dash-app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+// ── Top bar (OS menu bar) ─────────────────────────────────────────────────────
+.dash-topbar {
+  height: 40px;
+  background: $bg-titlebar;
+  border-bottom: 1px solid $border;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+
+  &__logo {
+    font-family: $font-ui;
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: $text;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &::before {
+      content: '▣';
+      color: $blue;
+      font-size: 1rem;
+    }
+  }
+
+  &__sep { width: 1px; height: 20px; background: $border; }
+
+  &__menu {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+
+    a {
+      font-size: 0.8rem;
+      color: $text-secondary;
+      text-decoration: none;
+      padding: 0.3rem 0.6rem;
+      border-radius: $radius-sm;
+      transition: background 0.15s, color 0.15s;
+
+      &:hover, &.active {
+        background: rgba($blue, 0.15);
+        color: $blue;
+        text-decoration: none;
+      }
+    }
+  }
+
+  &__spacer { flex: 1; }
+
+  &__status {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: $font-mono;
+    font-size: 0.7rem;
+    color: $text-secondary;
+  }
+
+  &__dot { @include status-dot($green); }
+
+  &__toggle {
+    display: none;
+    background: none;
+    border: 1px solid $border;
+    color: $text-secondary;
+    padding: 0.25rem 0.5rem;
+    border-radius: $radius-sm;
+    cursor: pointer;
+    font-size: 0.75rem;
+  }
+}
+
+// ── Main workspace ────────────────────────────────────────────────────────────
+.dash-workspace {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+// ── Sidebar ───────────────────────────────────────────────────────────────────
+.dash-sidebar {
+  width: $sidebar-width;
+  background: $bg-sidebar;
+  border-right: 1px solid $border;
+  padding: 1rem 0;
+  flex-shrink: 0;
+  overflow-y: auto;
+
+  &__section {
+    margin-bottom: 0.25rem;
+  }
+
+  &__label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $text-dim;
+    padding: 0.5rem 1rem 0.25rem;
+    display: block;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+    color: $text-secondary;
+    text-decoration: none;
+    border-radius: 0;
+    transition: background 0.15s, color 0.15s;
+    position: relative;
+
+    &::before {
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      width: 16px;
+      text-align: center;
+    }
+
+    &:hover {
+      background: rgba($blue, 0.08);
+      color: $text;
+      text-decoration: none;
+    }
+
+    &.active {
+      background: rgba($blue, 0.15);
+      color: $blue;
+
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0; top: 0;
+        width: 3px; height: 100%;
+        background: $blue;
+        border-radius: 2px 0 0 2px;
+      }
+    }
+  }
+
+  // Icon prefixes via content
+  &__link--home::before  { content: '⌂'; }
+  &__link--archive::before { content: '≡'; }
+  &__link--tags::before  { content: '#'; }
+  &__link--about::before { content: '◎'; }
+
+  &__divider { height: 1px; background: $border; margin: 0.5rem 1rem; }
+}
+
+// ── Content area ──────────────────────────────────────────────────────────────
+.dash-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  max-width: 100%;
+}
+
+// ── Progress bar ──────────────────────────────────────────────────────────────
+.dash-progress {
+  position: fixed;
+  top: 40px; left: 0;
+  height: 2px;
+  width: 0%;
+  background: $blue;
+  z-index: 300;
+  transition: width 0.1s linear;
+}
+
+// ── Taskbar (bottom) ──────────────────────────────────────────────────────────
+.dash-taskbar {
+  height: 36px;
+  background: $bg-titlebar;
+  border-top: 1px solid $border;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  font-family: $font-mono;
+  font-size: 0.65rem;
+  color: $text-dim;
+
+  a { color: $text-dim; text-decoration: none; &:hover { color: $blue; } }
+}
+
+// ── Responsive ────────────────────────────────────────────────────────────────
+@media (max-width: 768px) {
+  .dash-sidebar {
+    display: none;
+    position: fixed;
+    top: 40px; left: 0;
+    height: calc(100vh - 40px);
+    z-index: 150;
+    width: 220px;
+
+    &.open { display: block; }
+  }
+
+  .dash-topbar {
+    &__menu { display: none; }
+    &__toggle { display: block; }
+  }
+}

@@ -1,0 +1,39 @@
+title: "Dev Dashboard"
+description: "Your developer portfolio and blog — OS desktop UI aesthetic"
+url: ""
+baseurl: ""
+author:
+  name: "Your Name"
+  email: "you@example.com"
+  github: "yourusername"
+  twitter: "yourhandle"
+
+# Dashboard theme configuration
+dashboard:
+  os: "dark"           # dark | light | system
+  sidebar: true        # show sidebar nav
+  widgets: true        # show stat widgets on home
+  window_chrome: true  # show window title bar on cards
+  taskbar: true        # bottom taskbar
+
+plugins:
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
+paginate: 8
+paginate_path: "/page:num/"
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+permalink: /:year/:month/:day/:title/
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge

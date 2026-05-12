@@ -1,0 +1,95 @@
+@import 'variables';
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; height: 100%; }
+
+body {
+  background: $bg-desktop;
+  color: $text;
+  font-family: $font-ui;
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+// ── Typography ────────────────────────────────────────────────────────────────
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-ui;
+  font-weight: 600;
+  line-height: 1.25;
+  color: $text;
+}
+
+h1 { font-size: 1.625rem; }
+h2 { font-size: 1.25rem;  margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.05rem;  margin: 1.5rem 0 0.5rem; }
+
+p { margin-bottom: 1rem; color: $text-secondary; }
+p:first-child { color: $text; }
+
+a {
+  color: $blue;
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
+}
+
+// ── Code ──────────────────────────────────────────────────────────────────────
+code, pre { font-family: $font-mono; font-size: 0.85em; }
+
+code {
+  background: rgba($blue, 0.1);
+  border: 1px solid rgba($blue, 0.2);
+  border-radius: $radius-sm;
+  padding: 0.15em 0.4em;
+  color: $blue;
+}
+
+pre {
+  @include panel($bg-input);
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin-bottom: 1.25rem;
+  position: relative;
+
+  // Window chrome header bar
+  border-top: $titlebar-h solid $bg-titlebar;
+  border-radius: $radius;
+
+  &::before {
+    content: '◉  ◉  ◉';
+    position: absolute;
+    top: 0; left: 0;
+    height: $titlebar-h;
+    padding: 0 12px;
+    font-size: 0.5rem;
+    letter-spacing: 0.3em;
+    color: $text-dim;
+    display: flex;
+    align-items: center;
+    line-height: $titlebar-h;
+  }
+
+  code { background: none; border: none; padding: 0; color: $text; }
+}
+
+blockquote {
+  border-left: 3px solid $blue;
+  padding: 0.75rem 1.25rem;
+  margin: 1.5rem 0;
+  background: rgba($blue, 0.05);
+  border-radius: 0 $radius $radius 0;
+
+  p { color: $text-secondary; margin: 0; }
+}
+
+hr {
+  border: none;
+  border-top: 1px solid $border;
+  margin: 2rem 0;
+}
+
+img { max-width: 100%; border-radius: $radius; border: 1px solid $border; }
+ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; color: $text-secondary; }
+li { margin-bottom: 0.25rem; }
+strong { color: $text; font-weight: 600; }

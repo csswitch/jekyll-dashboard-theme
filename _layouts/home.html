@@ -1,0 +1,84 @@
+---
+layout: default
+---
+
+<!-- Stat widgets -->
+<div class="widget-row">
+  <div class="stat-widget stat-widget--blue">
+    <div class="stat-widget__label">Total Posts</div>
+    <div class="stat-widget__value">{{ site.posts.size }}</div>
+    <div class="stat-widget__sub">entries</div>
+  </div>
+  <div class="stat-widget stat-widget--green">
+    <div class="stat-widget__label">Latest</div>
+    <div class="stat-widget__value">{{ site.posts.first.date | date: "%d %b" }}</div>
+    <div class="stat-widget__sub">{{ site.posts.first.date | date: "%Y" }}</div>
+  </div>
+  <div class="stat-widget stat-widget--purple">
+    <div class="stat-widget__label">Tags</div>
+    <div class="stat-widget__value">{{ site.tags.size }}</div>
+    <div class="stat-widget__sub">unique</div>
+  </div>
+  <div class="stat-widget stat-widget--yellow">
+    <div class="stat-widget__label">Status</div>
+    <div class="stat-widget__value" style="font-size:1rem;">Online</div>
+    <div class="stat-widget__sub">↑ active</div>
+  </div>
+</div>
+
+<!-- Posts grid -->
+<div class="section-header">
+  <span class="section-header__title">Recent Posts</span>
+  <span class="section-header__count">{{ site.posts.size }}</span>
+</div>
+
+{% if paginator.posts %}
+  {% assign posts = paginator.posts %}
+{% else %}
+  {% assign posts = site.posts %}
+{% endif %}
+
+<div class="post-grid">
+{% for post in posts %}
+  <a class="post-card" href="{{ post.url | relative_url }}">
+    <div class="post-card__titlebar">
+      <span class="dot dot-r"></span>
+      <span class="dot dot-y"></span>
+      <span class="dot dot-g"></span>
+      <span class="post-card__ext">.md</span>
+    </div>
+    <div class="post-card__body">
+      <div class="post-card__date">{{ post.date | date: "%Y-%m-%d" }}</div>
+      <div class="post-card__title">{{ post.title }}</div>
+      {% if post.excerpt %}
+      <div class="post-card__excerpt">{{ post.excerpt | strip_html | truncate: 110 }}</div>
+      {% endif %}
+      {% if post.tags.size > 0 %}
+      <div class="post-card__tags">
+        {% for tag in post.tags limit:3 %}
+        <span class="tag-pill">{{ tag }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </a>
+{% endfor %}
+</div>
+
+{% if paginator.total_pages > 1 %}
+<nav class="dash-pagination">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | relative_url }}">← Prev</a>
+  {% endif %}
+  {% for i in (1..paginator.total_pages) %}
+    {% if i == paginator.page %}
+      <span class="current">{{ i }}</span>
+    {% else %}
+      <a href="{{ site.paginate_path | replace: ':num', i | relative_url }}">{{ i }}</a>
+    {% endif %}
+  {% endfor %}
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | relative_url }}">Next →</a>
+  {% endif %}
+</nav>
+{% endif %}
